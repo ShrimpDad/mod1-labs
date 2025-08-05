@@ -3,11 +3,13 @@ package lab3;
 public class WeightConversions {
 
 	public static void main(String[] args) {
+		Utils utils = new Utils();
+		
 		System.out.println("Enter weight in kg: ");
-		int weight = ScannerUtils.getInt();		
+		int weight = utils.getInt();		
 		convertKgsToStonesPounds( weight );
 
-		ScannerUtils.close();
+		utils.close();
 
 	}
 	
