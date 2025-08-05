@@ -1,11 +1,15 @@
-package lab2;
+package lab4;
 
-public class Program {
-
+public class Grades {
 	public static void main(String[] args) {
-		int mark = 5220;
-		System.out.println(getGrade(mark));
-		System.out.printf("For your mark %d/100 grade is: %s", mark, getGrade(mark));
+		String[] names = { "Alice", "Benny", "Chris", "Daryl", "Edith" };
+		Integer[] marks = { 40, 55, 65, 75, 101 };
+
+		int index = 0;
+		for (int mark : marks) {
+			System.out.println(names[index] + " scored " + mark + " = " + getGrade(mark));
+			index++;
+		}
 	}
 
 	public static String getGrade(int mark) {
