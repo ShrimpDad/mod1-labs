@@ -1,7 +1,7 @@
 package lab2_1;
 
 public class Bank {
-	int lastID;
+	static int lastID;
 	Account[] accounts = new Account[3];
 	
 	public Account addAccount(String owner, double balance) {
@@ -12,7 +12,7 @@ public class Bank {
 		
 		Account account = new Account(lastID, owner, balance);
 		accounts[lastID] = account;
-		this.lastID += 1;
+		lastID += 1;
 		return account;
 	}
 	
