@@ -1,4 +1,4 @@
-package lab4;
+package lab1_4;
 
 import java.util.Random;
 
@@ -18,7 +18,7 @@ public class Game21 {
 		String card = "";
 		int cardValue = 0;
 		int totalValue = 0;
-		
+
 		for (int i = 1; i <= drawLimit; i++) {
 			card = drawCard();
 			cardValue = getCardValue(card);
@@ -26,36 +26,24 @@ public class Game21 {
 			System.out.println(card + " is worth " + cardValue);
 
 		}
-		
+
 		System.out.println("Total value is: " + totalValue);
 	}
 
 	public static int getCardValue(String card) {
 
-		char cardType = card.charAt(0);
-		int value = 0;
+		String rank = card.split(" ")[0];
 
-		switch (cardType) {
-			case '1':
-				value = 10;
-				break;
-			case 'A':
-				value = 10;
-				break;
-			case 'K':
-				value = 10;
-				break;
-			case 'Q':
-				value = 10;
-				break;
-			case 'J':
-				value = 10;
-				break;
-			default:
-				value = cardType - '0';
-		}
-
-		return value;
+	    switch (rank) {
+	        case "10":
+	        case "Jack":
+	        case "Queen":
+	        case "King":
+	        case "Ace":
+	            return 10;
+	        default:
+	            return Integer.parseInt(rank);
+	    }
 	}
 
 	public static String drawCard() {
