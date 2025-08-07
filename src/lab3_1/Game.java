@@ -7,32 +7,51 @@ import java.util.Timer;
 import javax.swing.*;
 
 public class Game extends JPanel {
-
-	Ball[] balls = new Ball[1000];
-
+	
+	// Attributes
+	ArrayList<Shape> shapes = new ArrayList<>(); // Initialise x number of shapes ( should encapsulate )
+	
+	// Main
+	public static void main(String[] args) {
+		new Game();
+	}
+	
+	// Game Logic
 	Game() {
+		
+		// For each shape in shapes ( should encapsulate )
 		Random rand = new Random();
-
-		for (int i = 0; i < balls.length; i++) {
+		for (int i = 0; i < 1000; i++) {
+			
+			// Set size
 			int w = 20 + rand.nextInt(31);
 			int h = w;
-
-			int x = rand.nextInt(Ball.worldW - w);
-			int y = rand.nextInt(Ball.worldH - h);
-
+			
+			// Set position
+			int x = rand.nextInt(Shape.worldW - w);
+			int y = rand.nextInt(Shape.worldH - h);
+			
+			// Set speed
 			int dx = 1 + rand.nextInt(20);
 			int dy = 1 + rand.nextInt(20);
-
+			
+			// Set direction
 			if (rand.nextBoolean())
 				dx = -dx;
 			if (rand.nextBoolean())
 				dy = -dy;
-
-			balls[i] = new Ball(x, y, w, h, dx, dy);
+			
+			// Set shape type
+			Shape.ShapeType[] types = Shape.ShapeType.values();
+			Shape.ShapeType randomType = types[rand.nextInt(types.length)];
+			
+			// Invoke full constructor
+			shapes.add( new Shape(x, y, w, h, dx, dy, randomType));
 		}
-
+		
+		// Setup frame
 		JFrame frame = new JFrame();
-		this.setPreferredSize(new Dimension(Ball.worldW, Ball.worldH));
+		this.setPreferredSize(new Dimension(Shape.worldW, Shape.worldH));
 		frame.add(this);
 		frame.pack();
 		frame.setVisible(true);
@@ -53,22 +72,22 @@ public class Game extends JPanel {
 				tt.cancel();
 			}
 		});
+		
+		// Allow window to update world size
 		this.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-				Ball.worldW = getWidth();
-				Ball.worldH = getHeight();
+				Shape.worldW = getWidth();
+				Shape.worldH = getHeight();
 			}
 		});
 	}
 
-	public static void main(String[] args) {
-		new Game();
-	}
 
+	// Graphics
 	public void draw() {
-		for (Ball ball : balls) {
-			ball.move();
+		for (Shape shape : shapes) {
+			shape.move();
 		}
 		this.repaint();
 	}
@@ -76,9 +95,11 @@ public class Game extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawRect(0, 0, Ball.worldW, Ball.worldH);
-		for (Ball ball : balls) {
-			ball.draw(g);
+		// Draw World from origin
+		g.drawRect(0, 0, Shape.worldW, Shape.worldH);
+		// Draw each shape
+		for (Shape shape : shapes) {
+			shape.draw(g);
 		}
 	}
 }
