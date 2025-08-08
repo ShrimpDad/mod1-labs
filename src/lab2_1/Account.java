@@ -15,7 +15,7 @@ public class Account {
 		this( id, owner, 0.00 );
 	}
 	
-	void Deposit(double amount) {
+	void deposit(double amount) {
 		if (amount < 0) {
 			System.out.println("Error: Cannot deposit negative amount");
 			return;
@@ -23,7 +23,7 @@ public class Account {
 		this.balance += amount;
 	}
 	
-	void Withdraw(double amount) {
+	void withdraw(double amount) {
 		if (amount > this.balance ) {
 			System.out.println("Error: Cannot withdraw, amount exceeds balance");
 			return;

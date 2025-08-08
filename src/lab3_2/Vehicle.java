@@ -27,7 +27,7 @@ public class Vehicle {
 		}
 	}
 	
-	public void getDetails() {
-		System.out.printf("Speed: %d%nLane: %d%nDistance Travelled: %d%nPlate: %s%n%n", speed, lane, distanceTravelled, registrationPlate.getNumber());
+	public String getDetails() {
+		return "Speed: "+ speed+"\rLane: "+lane+"\rDistance Travelled: "+distanceTravelled+"\rPlate: " + registrationPlate.getNumber();
 	}
 }

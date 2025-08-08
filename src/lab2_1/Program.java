@@ -4,8 +4,8 @@ public class Program {
 
 	public static void main(String[] args) {
 		Account account = new Account(1, "Chris");
-		account.Deposit(200);
-		account.Withdraw(100);
+		account.deposit(200);
+		account.withdraw(100);
 		System.out.println(account.getDetails());
 
 		Account[] accounts = new Account[3];
